@@ -1,7 +1,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>
-		Example application
+        Shared Storage
 	</title>
 </head>
 <template name="layout">
@@ -29,7 +29,6 @@
 						</span>
 					</button>
 					<a class="navbar-brand" href="#">
-						Example application
 					</a>
 				</div>
 				<div id="menu" class="collapse navbar-collapse">
@@ -54,14 +53,14 @@
 		<li id="menu-item-simple" class="{{menuItemClass 'home_public'}}">
 			<a href="{{pathFor 'home_public'}}">
 				<span class="item-title">
-					Home
+					Find Storage
 				</span>
 			</a>
 		</li>
         <li id="menu-item-simple" class="{{menuItemClass 'register_storage'}}">
             <a href="{{pathFor 'register_storage'}}">
 				<span class="item-title">
-					second Home
+					Register Storage
 				</span>
             </a>
         </li>
@@ -104,7 +103,6 @@
 						</span>
 					</button>
 					<a class="navbar-brand" href="#">
-						Example application
 					</a>
 				</div>
 				<div id="menu" class="collapse navbar-collapse">
@@ -133,6 +131,13 @@
 				</span>
 			</a>
 		</li>
+        <li id="menu-item-simple" class="{{menuItemClass 'register_storage'}}">
+            <a href="{{pathFor 'register_storage'}}">
+				<span class="item-title">
+					Register Storage
+				</span>
+            </a>
+        </li>
 	</ul>
 </template>
 

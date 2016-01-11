@@ -12,7 +12,7 @@ var publicRoutes = [
 	"register",
 	"forgot_password",
 	"reset_password",
-	"register_storage"
+
 
 ];
 
@@ -21,6 +21,7 @@ var privateRoutes = [
 	"user_settings",
 	"user_settings.profile",
 	"user_settings.change_pass",
+	"register_storage",
 	"logout"
 ];
 
@@ -31,6 +32,8 @@ var freeRoutes = [
 var roleMap = [
 	
 ];
+
+
 
 this.firstGrantedRoute = function(preferredRoute) {
 	if(preferredRoute && routeGranted(preferredRoute)) return preferredRoute;
@@ -113,8 +116,11 @@ Router.ensureLogged = function() {
 
 	if(!Meteor.userId()) {
 		// user is not logged in - redirect to public home
-		var redirectRoute = firstGrantedRoute("home_public");
+
+		//var redirectRoute = firstGrantedRoute("home_public");
+		var redirectRoute = firstGrantedRoute("login");
 		this.redirect(redirectRoute);
+
 	} else {
 		// user is logged in - check role
 		if(!routeGranted(this.route.getName())) {
@@ -126,6 +132,9 @@ Router.ensureLogged = function() {
 		}
 	}
 };
+
+
+
 
 Router.ensureNotLogged = function() {
 	if(Meteor.userId() && (!Meteor.user() || !Meteor.user().roles)) {
@@ -141,6 +150,7 @@ Router.ensureNotLogged = function() {
 		this.next();
 	}
 };
+
 
 // called for pages in free zone - some of pages can be restricted
 Router.ensureGranted = function() {
@@ -172,6 +182,7 @@ Router.onBeforeAction(function() {
 		this.next();
 	}
 });
+
 
 Router.onBeforeAction(Router.ensureNotLogged, {only: publicRoutes});
 Router.onBeforeAction(Router.ensureLogged, {only: privateRoutes});
