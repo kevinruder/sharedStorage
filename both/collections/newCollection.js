@@ -13,7 +13,9 @@ RegisterStorage.allow({
 
 });
 
+
 RegisterStorage.attachSchema(new SimpleSchema({
+
     Name: {
         type: String,
         label: "Name",
@@ -21,8 +23,47 @@ RegisterStorage.attachSchema(new SimpleSchema({
     },
     Address: {
         type: String,
-        label: "Address"
+        label: "Address",
+        optional: true
+
     },
+
+    Lat:{
+
+        type: String,
+        label:'latitude',
+        optional: true,
+        autoValue:function(){
+            return Meteor.call('GetLat',this.siblingField("Address").value);
+        },
+        autoform: {
+            type: "hidden",
+            label: false
+        }
+
+
+
+
+    },
+
+    Long:{
+
+        type: String,
+        label: 'longitude',
+        optional: true,
+        autoValue:function(){
+
+            return Meteor.call('GetLong',this.siblingField("Address").value);
+        },
+        autoform: {
+            type: "hidden",
+            label: false
+        }
+
+
+    },
+
+
     Space: {
         type: Number,
         label: "Space in cubic meters",
@@ -46,6 +87,10 @@ RegisterStorage.attachSchema(new SimpleSchema({
         max: 1000
     }
 }));
+
+
+
+
 
 Meteor.publish("storage", function() {
     return RegisterStorage.find({});

@@ -5,20 +5,12 @@
             <legend>Please fill out the following information</legend>
             {{> afQuickField name='Name'}}
             {{> afQuickField name='Address'}}
+            {{> afQuickField name='Lat'}}
+            {{> afQuickField name='Long'}}
             {{> afQuickField name='Space' rows=6}}
             <p>How long do you wish to rent out your storage ?</p>
             {{> afQuickField name='Start'}}
             {{> afQuickField name='End'}}
-            <div class="form-group{{#if afFieldIsInvalid name='cost'}} has-error{{/if}}">
-                <div class="input-group">
-                    <span class="input-group-addon">$</span>
-                    {{> afFieldInput name='cost'}}
-                    <span class="input-group-addon">/each</span>
-                </div>
-                {{#if afFieldIsInvalid name='cost'}}
-                    <span class="help-block">{{afFieldMessage name='cost'}}</span>
-                {{/if}}
-            </div>
         </fieldset>
         <button type="submit" class="btn btn-primary">Insert</button>
     {{/autoForm}}

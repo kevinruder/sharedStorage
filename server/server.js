@@ -3,6 +3,15 @@ var verifyEmail = false;
 Accounts.config({ sendVerificationEmail: verifyEmail });
 
 Meteor.startup(function() {
+
+	var Future = Npm.require('fibers/future');
+	function async(cb){
+		Meteor.setTimeout(function () {
+			cb(null, 'hello');
+		}, 3000);
+	}
+
+
 	// read environment variables from Meteor.settings
 	if(Meteor.settings && Meteor.settings.env && _.isObject(Meteor.settings.env)) {
 		for(var variableName in Meteor.settings.env) {
@@ -175,6 +184,39 @@ Meteor.methods({
 		this.unblock();
 
 		Email.send(options);
+	},
+
+	GetLong: function (Address) {
+
+		var geo = new GeoCoder();
+		var Future = Npm.require('fibers/future');
+
+		// make some new future
+		var fut = new Future();
+		var message = geo.geocode(Address);
+
+
+		fut.return(message[0].latitude.toString());
+
+		// wait for something from the future
+		return fut.wait();
+	},
+
+
+	GetLat: function (Address) {
+
+		var geo = new GeoCoder();
+		var Future = Npm.require('fibers/future');
+
+		// make some new future
+		var fut = new Future();
+		var message = geo.geocode(Address);
+
+
+		fut.return(message[0].longitude.toString());
+
+		// wait for something from the future
+		return fut.wait();
 	}
 });
 

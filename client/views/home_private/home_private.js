@@ -1,5 +1,5 @@
 Template.HomePrivate.rendered = function() {
-	
+
 };
 
 Template.HomePrivate.events({

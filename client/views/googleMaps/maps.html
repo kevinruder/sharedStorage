@@ -1,5 +1,8 @@
 <template name="Map">
         <div class="map-container">
-        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+        {{#if Template.subscriptionsReady}}
+            {{> googleMap name="exampleMap" options=exampleMapOptions}}
+                {{markers}}
+        {{/if}}
         </div>
 </template>
