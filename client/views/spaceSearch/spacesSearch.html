@@ -1,0 +1,17 @@
+<template name="spaceSearch">
+    <div id="space_search_form" class="container">
+        {{#autoForm schema=spaceSearchSchema id="spaceSearch" type="method" meteormethod="calculateSpace"}}
+            <fieldset>
+                <legend>What do you need space for ?</legend>
+                {{> afQuickField name='Items'}}
+            </fieldset>
+
+            <div class="jumbotron">
+                <h1>You need this much space</h1>
+                <h1>{{jew}} cubic meters </h1>
+                <p> The map has been filtered towards your preference</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Insert</button>
+        {{/autoForm}}
+    </div>
+</template>

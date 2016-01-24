@@ -54,7 +54,6 @@ Template.Map.helpers({
 
                 });
 
-                console.log(parseFloat(lat));
 
             }
 

@@ -17,7 +17,9 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+coffeescript@1.0.11
 copleykj:livestamp@1.1.7
+dandv:caret-position@2.1.1
 dburles:google-maps@1.1.5
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
@@ -55,6 +57,7 @@ less@2.5.1
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
+lukemadera:autoform-googleplace@1.0.7
 matb33:collection-hooks@0.8.1
 meteor@1.1.10
 meteor-base@1.0.1
@@ -75,12 +78,15 @@ meteortoys:throttle@2.1.0
 meteortoys:toykit@2.2.1
 minifiers@1.1.7
 minimongo@1.0.10
+mizzao:autocomplete@0.5.1
 mizzao:bootboxjs@4.4.0
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
 momentjs:moment@2.9.0
 mongo@1.1.3
 mongo-id@1.0.1
+mpowaga:autoform-autocomplete@0.0.2
+mrt:copy-template@0.9.0
 mrt:moment@2.8.1
 msavin:jetsetter@1.5.2
 msavin:mongol@1.6.2
@@ -117,3 +123,4 @@ underscore@1.0.4
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
+yogiben:autoform-map@0.1.3

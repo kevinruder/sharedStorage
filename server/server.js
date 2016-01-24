@@ -218,6 +218,7 @@ Meteor.methods({
 		// wait for something from the future
 		return fut.wait();
 	}
+
 });
 
 Accounts.onCreateUser(function (options, user) {

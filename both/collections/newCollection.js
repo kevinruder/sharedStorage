@@ -95,3 +95,5 @@ RegisterStorage.attachSchema(new SimpleSchema({
 Meteor.publish("storage", function() {
     return RegisterStorage.find({});
 });
+
+
