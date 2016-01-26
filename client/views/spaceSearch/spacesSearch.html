@@ -24,7 +24,7 @@
             <legend>Search for an item</legend>
             {{> afQuickField name='inventory'}}
         </fieldset>
-        <h1>Total Space needed: {{jew2}}</h1>
+        <h1>Total Space needed: {{calculateSpace}}</h1>
         <button type="submit" class="btn btn-primary">Filter Now</button>
     {{/autoForm}}
 {{/if}}

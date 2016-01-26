@@ -6,6 +6,8 @@ Template.spaceSearch.helpers({
         return Schema.spaceSearch;
     },
 
+    // THIS FUNCTION OR TEMPLATE IS CURRENTLY NOT BEING USED
+
     jew: function() {
 
         // value is an array
@@ -55,7 +57,7 @@ Template.spaceSearch.helpers({
 
 Template.searchItem.helpers({
 
-    jew2:function(){
+    calculateSpace:function(){
 
         var value = AutoForm.getFieldValue('inventory');
         var totalCM = 0;
@@ -70,6 +72,8 @@ Template.searchItem.helpers({
         }
 
         return totalCM;
+
+        // set this as a session variable :)
 
 
     }
