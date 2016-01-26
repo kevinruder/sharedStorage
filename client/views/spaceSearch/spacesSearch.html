@@ -14,4 +14,23 @@
             <button type="submit" class="btn btn-primary">Insert</button>
         {{/autoForm}}
     </div>
+    {{>insertItemForm}}
 </template>
+
+<template name="searchItem">
+{{#if Template.subscriptionsReady}}
+    {{#autoForm collection="SpaceSearch" id="lookingforspace" type="insert"}}
+        <fieldset>
+            <legend>Search for an item</legend>
+            {{> afQuickField name='inventory'}}
+        </fieldset>
+        <h1>Total Space needed: {{jew2}}</h1>
+        <button type="submit" class="btn btn-primary">Filter Now</button>
+    {{/autoForm}}
+{{/if}}
+</template>
+
+<template name="autocompleteItem" class="t-autocompleteItem">
+    {{name}}
+</template>
+

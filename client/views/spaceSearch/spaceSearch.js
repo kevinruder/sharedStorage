@@ -3,8 +3,6 @@
  */
 Template.spaceSearch.helpers({
     spaceSearchSchema: function() {
-
-
         return Schema.spaceSearch;
     },
 
@@ -51,16 +49,32 @@ Template.spaceSearch.helpers({
             return null; // put your default "not found" return value here
         }
 
+    }
+});
 
 
+Template.searchItem.helpers({
 
+    jew2:function(){
+
+        var value = AutoForm.getFieldValue('inventory');
+        var totalCM = 0;
+
+        var k;
+
+        for(k in value){
+
+            var cool = ItemList.find({name: value[k].name}).fetch();
+            totalCM += (cool[0].volume * value[k].amount);
+
+        }
+
+        return totalCM;
 
 
     }
 
-
 });
-
 
 
 Template.spaceSearch.events({
@@ -69,6 +83,13 @@ Template.spaceSearch.events({
         //template.$("input[name=myAge]").val(birthdate);
     }
 });
+
+Template.searchItem.onCreated(function() {
+
+    this.subscribe("itemlist");
+
+});
+
 
 
 

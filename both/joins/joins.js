@@ -49,9 +49,4 @@ Schema.spaceSearch = new SimpleSchema({
 });
 
 
-var foos = new Mongo.Collection( null );
-for ( var i = 0; i < 100; i++ ) {
-    foos.insert({ "chair": "chair" });
-}
-
 
