@@ -23,11 +23,51 @@ Template.Map.helpers({
 
     markers: function(){
 
+    }
 
-        var Users =  RegisterStorage.find({}).fetch();
 
-        GoogleMaps.ready('exampleMap', function(map) {
-            // Add a marker to the map once it's ready
+
+});
+
+Template.Map.onCreated(function() {
+
+    var gmarkers = [];
+
+    var Users =  RegisterStorage.find({}).fetch();
+
+    this.subscribe("storage");
+
+    GoogleMaps.ready('exampleMap', function(map) {
+        // Add a marker to the map once it's ready
+
+        var k;
+
+        for(k in Users){
+
+            var lat = Users[k].Lat;
+            var long = Users[k].Long;
+
+            placeMarker(lat,long);
+
+            gmarkers.push(marker);
+
+        }
+
+    });
+
+    this.autorun(function(){
+
+        var _spaceNeeded = Session.get("spaceNeeded");
+
+        if(_spaceNeeded == null){
+            _spaceNeeded = 0;
+        }
+
+        var Users =  RegisterStorage.find({Space:{$gt:_spaceNeeded}}).fetch();
+
+        if(GoogleMaps.loaded()){
+
+            removeMarkers();
 
 
             var k;
@@ -39,39 +79,57 @@ Template.Map.helpers({
 
                 placeMarker(lat,long);
 
+                console.log("NEW MARKER PLACED SON");
 
 
             }
 
-            function placeMarker(lat,long){
+            //addMarkers();
 
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat:parseFloat(long),
-                        lng:parseFloat(lat)
-                    },
-                    map: map.instance
-
-                });
+        }
 
 
-            }
+
+
+    })
+
+    function placeMarker(lat,long){
+
+
+        var marker = new google.maps.Marker({
+            position: {
+                lat:parseFloat(long),
+                lng:parseFloat(lat)
+            },
+            map: GoogleMaps.maps.exampleMap.instance
 
         });
 
+        gmarkers.push(marker);
 
-        // We can use the `ready` callback to interact with the map API once the map is ready.
+    }
 
+    function removeMarkers(){
+        for(i=0; i < gmarkers.length; i++){
+            gmarkers[i].setMap(null);
+        }
 
+        console.log("Markers have been removed");
+    }
+
+    console.log(gmarkers);
+
+    function addMarkers(){
+        for(i=0; i < gmarkers.length; i++){
+            gmarkers[i].setMap(GoogleMaps.maps.exampleMap.instance);
+        }
     }
 
 
 
-});
+    console.log(" THIS WAS CREATED");
 
-Template.Map.onCreated(function() {
 
-    this.subscribe("storage");
 
 });
 

@@ -71,9 +71,13 @@ Template.searchItem.helpers({
 
         }
 
+        Session.set("spaceNeeded",totalCM);
+
         return totalCM;
 
         // set this as a session variable :)
+
+
 
 
     }
