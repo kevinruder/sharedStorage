@@ -19,10 +19,6 @@ Template.Map.helpers({
             };
 
         }
-    },
-
-    markers: function(){
-
     }
 
 
@@ -31,42 +27,28 @@ Template.Map.helpers({
 
 Template.Map.onCreated(function() {
 
-
     var gmarkers = [];
-
-    var Users =  RegisterStorage.find({}).fetch();
 
     this.subscribe("storage");
 
     var ready;
 
     GoogleMaps.ready('exampleMap', function(map) {
+
+        var Users =  RegisterStorage.find({}).fetch();
+
         // Add a marker to the map once it's ready
 
-        var k;
-
         ready = true;
+        console.log(Users);
 
-        for(k in Users){
+        placeMarker(Users);
 
-            var lat = Users[k].Lat;
-            var long = Users[k].Long;
-
-            placeMarker(lat,long);
-
-            gmarkers.push(marker);
-
-            console.log("MARKERS PLACED");
-
-
-        }
 
     });
 
-    this.autorun(function(){
+    Tracker.autorun(function(){
 
-
-            console.log("Its ready");
 
             var _spaceNeeded = Session.get("spaceNeeded");
 
@@ -80,21 +62,7 @@ Template.Map.onCreated(function() {
 
                 removeMarkers();
 
-
-                var k;
-
-                for(k in Users){
-
-                    var lat = Users[k].Lat;
-                    var long = Users[k].Long;
-
-                    // CHECK TO SEE IF GOOGLE MAPS IS READY BEFORE PLACING MARKERS
-
-                    placeMarker(lat,long);
-
-
-
-                }
+                placeMarker(Users);
 
                 //addMarkers();
 
@@ -104,7 +72,16 @@ Template.Map.onCreated(function() {
 
     })
 
-    function placeMarker(lat,long){
+    function placeMarker(Users){
+
+        var k;
+
+        for(k in Users) {
+
+            var lat = Users[k].Lat;
+            var long = Users[k].Long;
+
+
 
             var marker = new google.maps.Marker({
                 position: {
@@ -116,6 +93,9 @@ Template.Map.onCreated(function() {
             });
 
             gmarkers.push(marker);
+
+
+        }
 
     }
 
