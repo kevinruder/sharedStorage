@@ -31,16 +31,21 @@ Template.Map.helpers({
 
 Template.Map.onCreated(function() {
 
+
     var gmarkers = [];
 
     var Users =  RegisterStorage.find({}).fetch();
 
     this.subscribe("storage");
 
+    var ready;
+
     GoogleMaps.ready('exampleMap', function(map) {
         // Add a marker to the map once it's ready
 
         var k;
+
+        ready = true;
 
         for(k in Users){
 
@@ -51,43 +56,49 @@ Template.Map.onCreated(function() {
 
             gmarkers.push(marker);
 
+            console.log("MARKERS PLACED");
+
+
         }
 
     });
 
     this.autorun(function(){
 
-        var _spaceNeeded = Session.get("spaceNeeded");
 
-        if(_spaceNeeded == null){
-            _spaceNeeded = 0;
-        }
+            console.log("Its ready");
 
-        var Users =  RegisterStorage.find({Space:{$gt:_spaceNeeded}}).fetch();
+            var _spaceNeeded = Session.get("spaceNeeded");
 
-        if(GoogleMaps.loaded()){
-
-            removeMarkers();
-
-
-            var k;
-
-            for(k in Users){
-
-                var lat = Users[k].Lat;
-                var long = Users[k].Long;
-
-                placeMarker(lat,long);
-
-                console.log("NEW MARKER PLACED SON");
-
-
+            if(_spaceNeeded == null){
+                _spaceNeeded = 0;
             }
 
-            //addMarkers();
+            var Users =  RegisterStorage.find({Space:{$gt:_spaceNeeded}}).fetch();
 
-        }
+            if(GoogleMaps.loaded() && ready == true){
 
+                removeMarkers();
+
+
+                var k;
+
+                for(k in Users){
+
+                    var lat = Users[k].Lat;
+                    var long = Users[k].Long;
+
+                    // CHECK TO SEE IF GOOGLE MAPS IS READY BEFORE PLACING MARKERS
+
+                    placeMarker(lat,long);
+
+
+
+                }
+
+                //addMarkers();
+
+            }
 
 
 
@@ -95,17 +106,16 @@ Template.Map.onCreated(function() {
 
     function placeMarker(lat,long){
 
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(long),
+                    lng: parseFloat(lat)
+                },
+                map: GoogleMaps.maps.exampleMap.instance
 
-        var marker = new google.maps.Marker({
-            position: {
-                lat:parseFloat(long),
-                lng:parseFloat(lat)
-            },
-            map: GoogleMaps.maps.exampleMap.instance
+            });
 
-        });
-
-        gmarkers.push(marker);
+            gmarkers.push(marker);
 
     }
 

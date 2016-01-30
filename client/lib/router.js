@@ -201,4 +201,6 @@ Router.map(function () {
 	this.route("user_settings.change_pass", {path: "/user_settings/change_pass", controller: "UserSettingsChangePassController"});
 	this.route("logout", {path: "/logout", controller: "LogoutController"});
 	this.route("register_storage", {path: "/register_storage", controller: "StorageRegisterController"});
+	this.route("insertItemForm", {path: "/update_database"});
+
 });

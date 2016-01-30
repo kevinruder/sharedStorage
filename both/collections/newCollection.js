@@ -150,13 +150,18 @@ spaceNeeded = new SimpleSchema({
         autoform: {
             type: 'autocomplete-input',
             rows: 6,
-            settings: postAutocompleteSettings
+            settings: postAutocompleteSettings,
+            defaultValue: "Cola"
         }
+
     },
     amount:{
         type: Number,
         min: 1,
-        max: 4
+        max: 4,
+        autoform: {
+            defaultValue: 1
+        }
     }
 });
 
@@ -174,12 +179,15 @@ SpaceSearch.attachSchema(
 
 
 
+if(Meteor.isServer) {
 
+    Meteor.publish("storage", function() {
+        return RegisterStorage.find({});
+    });
 
-Meteor.publish("storage", function() {
-    return RegisterStorage.find({});
-});
+    Meteor.publish("itemlist", function () {
+        return ItemList.find();
+    });
 
-Meteor.publish("itemlist", function () {
-    return ItemList.find();
-});
+}
+

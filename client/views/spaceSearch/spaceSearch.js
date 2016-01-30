@@ -62,6 +62,7 @@ Template.searchItem.helpers({
         var value = AutoForm.getFieldValue('inventory');
         var totalCM = 0;
 
+
         var k;
 
         for(k in value){
@@ -73,10 +74,11 @@ Template.searchItem.helpers({
 
         Session.set("spaceNeeded",totalCM);
 
+        console.log(value);
+
         return totalCM;
 
         // set this as a session variable :)
-
 
 
 

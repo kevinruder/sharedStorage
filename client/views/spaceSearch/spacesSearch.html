@@ -22,7 +22,7 @@
     {{#autoForm collection="SpaceSearch" id="lookingforspace" type="insert"}}
         <fieldset>
             <legend>Search for an item</legend>
-            {{> afQuickField name='inventory'}}
+            {{> afQuickField name='inventory' value=defaultValue}}
         </fieldset>
         <h1>Total Space needed: {{calculateSpace}}</h1>
         <button type="submit" class="btn btn-primary">Filter Now</button>
