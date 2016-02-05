@@ -62,7 +62,11 @@ Template.Map.onCreated(function() {
 
                 removeMarkers();
 
-                placeMarker(Users);
+                var k;
+
+                for(k in Users){
+                    placeMarker(Users[k])
+                }
 
                 //addMarkers();
 
@@ -70,16 +74,14 @@ Template.Map.onCreated(function() {
 
 
 
-    })
+    });
 
-    function placeMarker(Users){
+    function placeMarker(User){
 
-        var k;
 
-        for(k in Users) {
-
-            var lat = Users[k].Lat;
-            var long = Users[k].Long;
+            var lat = User.Lat;
+            var long = User.Long;
+            var name = User.Name;
 
 
 
@@ -92,10 +94,21 @@ Template.Map.onCreated(function() {
 
             });
 
+            // Creates the info window and the content inside of it
+
+            var infowindow = new google.maps.InfoWindow({
+                content: '<div id="infowin"><p>'+name+'"s storage </p></div>'
+            });
+
+            //adds click eventlistener and attaches it to the map instance and marker !
+
+            marker.addListener('click',function(){
+                infowindow.open(GoogleMaps.maps.exampleMap.instance, this);
+            });
+
+
             gmarkers.push(marker);
 
-
-        }
 
     }
 
