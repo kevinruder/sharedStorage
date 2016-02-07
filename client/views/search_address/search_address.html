@@ -1,0 +1,9 @@
+<template name="autoformGoogleplaceBasic">
+    <div class='autoform-googleplace-basic-cont padding-tb'>
+        <br />
+        {{#autoForm schema="PropertySchema" id="propertyAddressForm" type="normal"}}
+            {{> afQuickField type="googleplace" name="addresses.0" label=false placeholder="Enter the Property Address" opts=optsGoogleplace2 }}
+            <button type="submit" class="btn btn-primary filter-stuff">Go</button>
+        {{/autoForm}}
+    </div>
+</template>

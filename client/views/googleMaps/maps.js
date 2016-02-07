@@ -8,6 +8,9 @@ Meteor.startup(function() {
 Template.Map.helpers({
 
     exampleMapOptions: function() {
+
+
+
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
 
@@ -19,10 +22,35 @@ Template.Map.helpers({
             };
 
         }
+
+    },
+
+    changinglocation:function(){
+
+        var coord = Session.get("changeLocation");
+
+        if(coord != null){
+
+            var myLatLng= new google.maps.LatLng(coord.lat,coord.long);
+
+            GoogleMaps.maps.exampleMap.instance.setCenter(myLatLng);
+            GoogleMaps.maps.exampleMap.instance.setZoom(8);
+
+        }
+
+
+
     }
 
 
 
+
+});
+
+Template.Map.events({
+    'click .btn btn-primary btn-lg':function(){
+        console.log("THE BUTTON WAS CLICKED BRO");
+    }
 });
 
 Template.Map.onCreated(function() {
@@ -83,6 +111,14 @@ Template.Map.onCreated(function() {
             var long = User.Long;
             var name = User.Name;
 
+            if(User.Price){
+                var price = User.Price;
+            }
+            else {
+                var price = "not listed";
+            }
+
+
 
 
             var marker = new google.maps.Marker({
@@ -97,7 +133,9 @@ Template.Map.onCreated(function() {
             // Creates the info window and the content inside of it
 
             var infowindow = new google.maps.InfoWindow({
-                content: '<div id="infowin"><p>'+name+'"s storage </p></div>'
+                content: '<div id="infowin"><p>'+name+'"s storage </p>' +
+                '<p>Price: '+price+'<div><a href="/request_storage"  class="btn btn-primary btn-lg" role="button">Request Storage</a></div>' +
+                '<p>{{>test1}}</p>'
             });
 
             //adds click eventlistener and attaches it to the map instance and marker !

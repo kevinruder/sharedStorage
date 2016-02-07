@@ -14,10 +14,6 @@ RegisterStorage.allow({
 
 });
 
-
-
-
-
 RegisterStorage.attachSchema(new SimpleSchema({
 
     Name: {
@@ -77,6 +73,10 @@ RegisterStorage.attachSchema(new SimpleSchema({
         type: Date,
         label: "Start date",
         optional: true
+    },
+    Price:{
+        type: Number,
+        label: "Price pr square meter, pr month"
     },
 
     End: {
@@ -190,4 +190,5 @@ if(Meteor.isServer) {
     });
 
 }
+
 

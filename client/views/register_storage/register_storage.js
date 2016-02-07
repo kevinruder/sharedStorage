@@ -8,3 +8,14 @@ Template.RegisterStorage.onCreated(function () {
     // Use this.subscribe inside onCreated callback
     this.subscribe("storage");
 });
+
+Template.RegisterStorage.helpers({
+
+    recommendedPrice:function(){
+
+        // later insert functionality that sets price according to zipcode/postnr
+        return "30 kr"
+    }
+});
+
+
