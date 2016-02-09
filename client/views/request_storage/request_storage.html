@@ -1,3 +1,17 @@
-<template name="test1">
-    <p>testing if template can go here</p>
+<template name="storageRequest">
+        <div id="transaction_form" class="container">
+            {{#autoForm collection="Transactions" doc=defaultValues id="insertTransaction" type="insert"}}
+                <fieldset>
+                    <legend>Please fill out the following information</legend>
+                    {{> afQuickField name='Provider'}}
+                    {{> afQuickField name='Address'}}
+                    {{> afQuickField name='Client'}}
+                    {{> afQuickField name='Space'}}
+                    {{> afQuickField name='Price'}}
+                    {{> afQuickField name='Start'}}
+                    {{> afQuickField name='End'}}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Request Storage</button>
+            {{/autoForm}}
+        </div>
 </template>

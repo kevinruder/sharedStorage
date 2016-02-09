@@ -110,6 +110,7 @@ Template.Map.onCreated(function() {
             var lat = User.Lat;
             var long = User.Long;
             var name = User.Name;
+            var space = User.Space;
 
             if(User.Price){
                 var price = User.Price;
@@ -134,7 +135,8 @@ Template.Map.onCreated(function() {
 
             var infowindow = new google.maps.InfoWindow({
                 content: '<div id="infowin"><p>'+name+'"s storage </p>' +
-                '<p>Price: '+price+'<div><a href="/request_storage"  class="btn btn-primary btn-lg" role="button">Request Storage</a></div>' +
+                    'Space: '+space+
+                '<p>Price: '+price+'<div><a href="/request_storage?name='+name+'&price='+price+'&space='+space+'"  class="btn btn-primary btn-lg" role="button">Request Storage</a></div>' +
                 '<p>{{>test1}}</p>'
             });
 

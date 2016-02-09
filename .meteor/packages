@@ -40,7 +40,7 @@ meteortoys:allthings
 aldeed:simple-schema
 aldeed:collection2
 aldeed:geocoder
-yogiben:autoform-map
 lukemadera:autoform-googleplace
 mizzao:autocomplete
 mpowaga:autoform-autocomplete
+reactive-var
