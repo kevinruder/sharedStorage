@@ -1,0 +1,22 @@
+<template name="storageManager">
+    <div class="container">
+        <h1> Welcome to storage manager </h1>
+        <h2>Below you'll find a list of people interested in your storage</h2>
+        <ul class=list-group>
+            {{#each transactions}}
+            <div class="list-group-item">
+                <p>Name         :{{Client}}</p>
+                <p>Space Needed :{{Space}}</p>
+                <p>Price        :{{Price}}</p>
+                <button class="btn-success">ACCEPT</button><button class="btn-danger">DECLINE</button>
+            </div>
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="acceptStorage">
+    {{#if Template.subscriptionsReady}}
+        {{cool}}
+    {{/if}}
+</template>

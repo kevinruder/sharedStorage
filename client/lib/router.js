@@ -203,5 +203,6 @@ Router.map(function () {
 	this.route("register_storage", {path: "/register_storage", controller: "StorageRegisterController"});
 	this.route("insertItemForm", {path: "/update_database"});
 	this.route("storageRequest",{path: "/request_storage", controller: "StorageRequestController"});
+	this.route("storageManager",{path: "/storage_manager"});
 
 });

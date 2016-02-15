@@ -19,7 +19,13 @@ RegisterStorage.attachSchema(new SimpleSchema({
     Name: {
         type: String,
         label: "Name",
-        max: 200
+        max: 200,
+        autoValue:function(){
+            return Meteor.user().profile.name;
+        },
+        autoform: {
+            type: "hidden"
+        }
     },
     Address: {
         type: String,

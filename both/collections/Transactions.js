@@ -62,3 +62,12 @@ Transactions.attachSchema(new SimpleSchema({
         max: 1000
     }
 }));
+
+
+if(Meteor.isServer) {
+
+    Meteor.publish("transaction", function() {
+        return Transactions.find({});
+    });
+
+}
