@@ -1,0 +1,16 @@
+{
+  "oauth": {
+         "google": {
+             "clientId": "yourClientId",
+             "secret": "yourSecret"
+         },
+         "github": {
+             "clientId": "yourClientId",
+             "secret": "yourSecret"
+         },
+       "facebook":{
+         "clientId": "yourClientId",
+         "secret": "yourSecret"
+       }
+     }
+ }

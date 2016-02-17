@@ -1,54 +1,41 @@
 SimpleSchema.debug =true;   //TESTING
 
-
 AddressSchema =new SimpleSchema({
-    fullAddress: {
-        type: String
-    },
-    lat: {
-        type: Number,
-        decimal: true
-    },
-    lng: {
-        type: Number,
-        decimal: true
-    },
-    geometry: {
-        type: Object,
-        blackbox: true
-    },
-    placeId: {
-        type: String
-    },
-    street: {
+    formattedAddress: {
         type: String,
-        max: 100
+        optional: true
+    },
+    geopoint: {
+        type: [Number], //[longitude, latitude]
+        decimal: true,
+        optional: true
     },
     city: {
         type: String,
-        max: 50
+        optional: true
     },
-    state: {
+    postalCode: {
         type: String,
-        regEx: /^A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY]$/
-    },
-    zip: {
-        type: String,
-        regEx: /^[0-9]{5}$/
+        optional: true
     },
     country: {
-        type: String
+        type: String,
+        optional: true
+    },
+    countryName: {
+        type: String,
+        optional: true
     }
 });
 
 PropertySchema =new SimpleSchema({
     addresses: {
-        type: [AddressSchema],
-        optional: true
-    },
-    textOne: {
-        type: 'String',
-        optional: true
+        type: AddressSchema,
+        optional: true,
+        autoform: {
+            type: 'google-places-input'
+            // geopointName: "myOwnGeopointName" //optional, you can use a custom geopoint name
+        }
     }
 });
 
@@ -60,6 +47,7 @@ Meteor.methods({
 
     }
 });
+
 
 
 if(Meteor.isClient) {
@@ -81,26 +69,18 @@ if(Meteor.isClient) {
         // }
     }
 
-    Template.autoformGoogleplaceBasic.helpers({
-
-        optsGoogleplace2: function() {
-            return {
-                // type: 'googleUI',
-                // stopTimeoutOnKeyup: false,
-                googleOptions: {
-                    types: ['(cities)'],
-                    componentRestrictions: { country:'dk' }
-                }
-            }
-        }
-    });
 
     Template.autoformGoogleplaceBasic.events({
 
         'click .filter-stuff': function(evt, template) {
 
-            var lat = AutoForm.getFieldValue('addresses.0', 'propertyAddressForm').lat;
-            var long = AutoForm.getFieldValue('addresses.0', 'propertyAddressForm').lng;
+            evt.preventDefault();
+
+            var lat = AutoForm.getFieldValue('addresses', 'propertyAddressForm').geopoint[1];
+            var long = AutoForm.getFieldValue('addresses', 'propertyAddressForm').geopoint[0];
+
+            console.log(lat);
+            console.log(long);
 
             var coord = {lat: lat,
                         long:long};

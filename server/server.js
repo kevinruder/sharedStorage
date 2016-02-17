@@ -4,6 +4,8 @@ Accounts.config({ sendVerificationEmail: verifyEmail });
 
 Meteor.startup(function() {
 
+
+
 	var Future = Npm.require('fibers/future');
 	function async(cb){
 		Meteor.setTimeout(function () {
@@ -47,7 +49,7 @@ Meteor.startup(function() {
 
 			var settingsObject = Meteor.settings.oauth.google;
 			settingsObject.service = "google";
-
+			console.log("GOOGLE IS UP AND RUNNING");
 			// add new configuration
 			Accounts.loginServiceConfiguration.insert(settingsObject);
 		}

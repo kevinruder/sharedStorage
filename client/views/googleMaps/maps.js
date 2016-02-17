@@ -2,7 +2,9 @@
  * Created by Kevin on 10/01/2016.
  */
 Meteor.startup(function() {
-    GoogleMaps.load();
+    GoogleMaps.load({
+        libraries: 'places'
+    });
 });
 
 Template.Map.helpers({
